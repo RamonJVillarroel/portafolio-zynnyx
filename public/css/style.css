@@ -1,0 +1,99 @@
+/* ====== Clientes Carousel ====== */
+#mvpClientesTitle { margin-bottom: 1rem; }
+
+.mvp-carousel{
+  display: grid;
+  grid-template-columns: 44px 1fr 44px;
+  align-items: center;
+  gap: 12px;
+  margin-top: 1.25rem;
+}
+
+.mvp-carousel__viewport{
+  overflow: hidden;
+}
+
+.mvp-carousel-wrapper{
+  display: flex;
+  gap: 16px;
+  transition: transform .35s ease;
+  will-change: transform;
+}
+
+.mvp-card{
+  flex: 0 0 calc((100% - 32px) / 3); /* 3 visibles por defecto */
+  background: #fff;
+  border-radius: 18px;
+  padding: 1.25rem;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+  position: relative;
+  overflow: hidden;
+  min-height: 170px;
+}
+
+.mvp-card::after{
+  content:"";
+  position:absolute;
+  inset:0;
+  background: linear-gradient(135deg, rgba(17,63,103,0.05), rgba(88,160,200,0.15));
+  opacity:0;
+  transition: opacity .25s ease;
+  pointer-events:none;
+}
+
+.mvp-card:hover{
+  transform: translateY(-4px);
+  box-shadow: 0 18px 40px rgba(0,0,0,0.12);
+}
+
+.mvp-card:hover::after{ opacity:1; }
+
+.mvp-card a{
+  display: flex;
+  flex-direction: column;
+  gap: .75rem;
+  text-decoration: none;
+  color: inherit;
+  height: 100%;
+}
+
+.mvp-card img{
+  border-radius: 14px;
+  object-fit: cover;
+  border: 1px solid rgba(15, 23, 42, 0.08);
+}
+
+.mvp-card p{
+  margin: 0;
+  font-weight: 700;
+  color: var(--primary);
+}
+
+/* Botones */
+.mvp-carousel__btn{
+  width: 44px;
+  height: 44px;
+  border-radius: 14px;
+  border: 1px solid rgba(15,23,42,.12);
+  background: white;
+  font-size: 22px;
+  font-weight: 900;
+  cursor: pointer;
+  display: grid;
+  place-items: center;
+  transition: transform .15s ease, filter .15s ease;
+}
+
+.mvp-carousel__btn:hover{ filter: brightness(1.02); transform: translateY(-1px); }
+.mvp-carousel__btn:disabled{ opacity: .4; cursor: not-allowed; transform: none; }
+
+/* Responsive: 2 visibles */
+@media (max-width: 900px){
+  .mvp-card{ flex-basis: calc((100% - 16px) / 2); }
+}
+
+/* Responsive: 1 visible */
+@media (max-width: 520px){
+  .mvp-carousel{ grid-template-columns: 40px 1fr 40px; }
+  .mvp-card{ flex-basis: 100%; }
+}
